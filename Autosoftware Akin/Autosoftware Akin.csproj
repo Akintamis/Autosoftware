@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Autosoftware_Akin</RootNamespace>
     <AssemblyName>Autosoftware Akin</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -95,30 +95,12 @@
     <Compile Include="Cardisplayer.Designer.cs">
       <DependentUpon>Cardisplayer.cs</DependentUpon>
     </Compile>
-    <Compile Include="benz.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="benz.Designer.cs">
-      <DependentUpon>benz.cs</DependentUpon>
-    </Compile>
-    <Compile Include="bmw.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="bmw.Designer.cs">
-      <DependentUpon>bmw.cs</DependentUpon>
-    </Compile>
     <Compile Include="Datenbank.cs" />
     <Compile Include="Hauptfenster.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Hauptfenster.Designer.cs">
       <DependentUpon>Hauptfenster.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Audi.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Audi.Designer.cs">
-      <DependentUpon>Audi.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -127,23 +109,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="vw.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="vw.Designer.cs">
-      <DependentUpon>vw.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Cardisplayer.resx">
       <DependentUpon>Cardisplayer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Audi.resx">
-      <DependentUpon>Audi.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="benz.resx">
-      <DependentUpon>benz.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="bmw.resx">
-      <DependentUpon>bmw.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hauptfenster.resx">
       <DependentUpon>Hauptfenster.cs</DependentUpon>
@@ -151,9 +118,6 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="vw.resx">
-      <DependentUpon>vw.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -169,7 +133,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\audi.jpg" />
   </ItemGroup>
@@ -181,6 +144,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\vw.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\audi_a7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

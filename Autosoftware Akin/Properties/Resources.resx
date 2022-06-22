@@ -121,11 +121,17 @@
   <data name="audi" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\audi.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="audi_a7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\audi_a7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="benz" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\benz.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="bmw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bmw.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\settings.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="vw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\vw.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

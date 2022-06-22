@@ -34,13 +34,16 @@
             this.benzknopf = new System.Windows.Forms.Button();
             this.bmwknopf = new System.Windows.Forms.Button();
             this.Audiknopf = new System.Windows.Forms.Button();
+            this.Autosknopf = new System.Windows.Forms.Button();
             this.Carkinlogohintergrund = new System.Windows.Forms.Panel();
             this.carkinlogo = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.autodrop = new System.Windows.Forms.ComboBox();
-            this.Autosknopf = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.button1 = new System.Windows.Forms.Button();
             this.Autoshintergrund.SuspendLayout();
             this.Carkinlogohintergrund.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // Autoshintergrund
@@ -74,7 +77,6 @@
             this.vwknopf.Text = "Volkswagen";
             this.vwknopf.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.vwknopf.UseVisualStyleBackColor = false;
-            this.vwknopf.Click += new System.EventHandler(this.button4_Click);
             // 
             // benzknopf
             // 
@@ -92,7 +94,6 @@
             this.benzknopf.Text = "Mercedes-Benz";
             this.benzknopf.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.benzknopf.UseVisualStyleBackColor = false;
-            this.benzknopf.Click += new System.EventHandler(this.button3_Click);
             // 
             // bmwknopf
             // 
@@ -110,7 +111,6 @@
             this.bmwknopf.Text = "BMW";
             this.bmwknopf.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.bmwknopf.UseVisualStyleBackColor = false;
-            this.bmwknopf.Click += new System.EventHandler(this.button2_Click);
             // 
             // Audiknopf
             // 
@@ -128,7 +128,23 @@
             this.Audiknopf.Text = "Audi";
             this.Audiknopf.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.Audiknopf.UseVisualStyleBackColor = false;
-            this.Audiknopf.Click += new System.EventHandler(this.Audiknopf_Click);
+            // 
+            // Autosknopf
+            // 
+            this.Autosknopf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(117)))), ((int)(((byte)(117)))));
+            this.Autosknopf.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Autosknopf.FlatAppearance.BorderSize = 0;
+            this.Autosknopf.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Autosknopf.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Autosknopf.ForeColor = System.Drawing.Color.White;
+            this.Autosknopf.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.Autosknopf.Location = new System.Drawing.Point(0, 0);
+            this.Autosknopf.Name = "Autosknopf";
+            this.Autosknopf.Size = new System.Drawing.Size(273, 102);
+            this.Autosknopf.TabIndex = 0;
+            this.Autosknopf.Text = "Autos";
+            this.Autosknopf.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Autosknopf.UseVisualStyleBackColor = false;
             // 
             // Carkinlogohintergrund
             // 
@@ -159,34 +175,34 @@
             // 
             this.timer1.Enabled = true;
             this.timer1.Interval = 2;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // autodrop
+            // dataGridView1
             // 
-            this.autodrop.FormattingEnabled = true;
-            this.autodrop.Location = new System.Drawing.Point(334, 287);
-            this.autodrop.Name = "autodrop";
-            this.autodrop.Size = new System.Drawing.Size(208, 21);
-            this.autodrop.TabIndex = 7;
-            this.autodrop.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 320);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(824, 334);
+            this.dataGridView1.TabIndex = 8;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
+            this.dataGridView1.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseDoubleClick);
             // 
-            // Autosknopf
+            // openFileDialog1
             // 
-            this.Autosknopf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(117)))), ((int)(((byte)(117)))));
-            this.Autosknopf.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Autosknopf.FlatAppearance.BorderSize = 0;
-            this.Autosknopf.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Autosknopf.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Autosknopf.ForeColor = System.Drawing.Color.White;
-            this.Autosknopf.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.Autosknopf.Location = new System.Drawing.Point(0, 0);
-            this.Autosknopf.Name = "Autosknopf";
-            this.Autosknopf.Size = new System.Drawing.Size(273, 102);
-            this.Autosknopf.TabIndex = 0;
-            this.Autosknopf.Text = "Autos";
-            this.Autosknopf.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Autosknopf.UseVisualStyleBackColor = false;
-            this.Autosknopf.Click += new System.EventHandler(this.Autosknopf_Click);
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(12, 280);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(163, 34);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Details öffnen...";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Hauptfenster
             // 
@@ -194,14 +210,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(848, 677);
-            this.Controls.Add(this.autodrop);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.Carkinlogohintergrund);
             this.Controls.Add(this.Autoshintergrund);
             this.Name = "Hauptfenster";
             this.Text = "Akincartor";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Hauptfenster_FormClosing);
+            this.Load += new System.EventHandler(this.Hauptfenster_Load);
             this.Autoshintergrund.ResumeLayout(false);
             this.Carkinlogohintergrund.ResumeLayout(false);
             this.Carkinlogohintergrund.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -216,7 +236,9 @@
         private System.Windows.Forms.Button bmwknopf;
         private System.Windows.Forms.Button Audiknopf;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.ComboBox autodrop;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

@@ -1,14 +1,9 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Autosoftware_Akin
@@ -16,100 +11,109 @@ namespace Autosoftware_Akin
     public partial class Hauptfenster : Form
     {
         DataSet ds;
+        MySqlDataAdapter da;
 
         public Hauptfenster()
         {
             InitializeComponent();
             new Datenbank();
             ds = new DataSet();
-            PopulateCarDropdown();
         }
 
-        private void PopulateCarDropdown()
+        //private void combobox1_selectedindexchanged(object sender, eventargs e)
+        //{
+        //    if (autodrop.selecteditem != null)
+        //    {
+        //        datarowview drv = autodrop.selecteditem as datarowview;
+        //        int id = convert.toint16(drv.row["id"]);
+        //        string marke = drv.row["marke"].tostring();
+        //        string bild = drv.row["bild"].tostring();
+
+        //        debug.writeline("id : " + id.tostring());
+        //        debug.writeline("drop selected value: " + autodrop.selectedvalue.tostring());
+        //        debug.writeline("marke: " + marke);
+        //        debug.writeline("bild: " + bild);
+
+        //        // bitte auswählen selected...
+        //        if (id != 0)
+        //        {
+        //            cardisplayer cardisplayer = new cardisplayer(id, marke, bild);
+        //            cardisplayer.show();
+        //        }
+        //    }
+        //}
+
+        private void Hauptfenster_Load(object sender, EventArgs e)
         {
-            string query = "select id, marke, bild from marke";
-            MySqlDataAdapter da = new MySqlDataAdapter(query, Datenbank.connection);
-            da.Fill(ds, "marke");
-            autodrop.DisplayMember = "marke";
-            autodrop.ValueMember = "id";
-            autodrop.DataSource = ds.Tables["marke"];
+            da = new MySqlDataAdapter("select * from marke", Datenbank.connection);
+            da.Fill(ds);
+            dataGridView1.DataSource = ds.Tables[0];
+            dataGridView1.Columns["id"].Visible = false;
+
+            // Removes the "x" image from new row
+            dataGridView1.Columns["bild"].DefaultCellStyle.NullValue = null;
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[dataGridView1.Columns["bild"].Index].Value = new Bitmap(1, 1);
         }
 
-
-
-        private bool isCollapsed;
-        private void timer1_Tick(object sender, EventArgs e)
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (isCollapsed)
+
+
+
+        }
+
+        private void Hauptfenster_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            MySqlCommandBuilder com = new MySqlCommandBuilder(da);
+            da.Update(ds);
+        }
+
+        private void dataGridView1_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count <= 0)
             {
-                Autoshintergrund.Height += 10;
-                if (Autoshintergrund.Size == Autoshintergrund.MaximumSize)
-                {
-                    timer1.Stop();
-                    isCollapsed = false;
-                }
+                return;
             }
-            else
+
+            DataGridViewRow row = dataGridView1.SelectedRows[0];
+
+            if (row.Index + 1 >= dataGridView1.Rows.Count)
             {
-                Autoshintergrund.Height -= 10;
-                if (Autoshintergrund.Size == Autoshintergrund.MinimumSize)
-                {
-                    timer1.Stop();
-                    isCollapsed = true;
-                }
+                return;
             }
 
+            MySqlCommandBuilder com = new MySqlCommandBuilder(da);
+            da.Update(ds);
+
+            DataRowView drv = row.DataBoundItem as DataRowView;
+            int id = Convert.ToInt32(drv.Row["id"]);
+            string marke = drv.Row["marke"].ToString();
+            byte[] bild = drv.Row["bild"] as byte[];
+
+            Cardisplayer cardisplayer = new Cardisplayer(id, marke, Image.FromStream(new MemoryStream(bild)));
+            cardisplayer.ShowDialog(this);
         }
 
-        private void Autosknopf_Click(object sender, EventArgs e)
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            timer1.Start();
-        }
-
-        private void Audiknopf_Click(object sender, EventArgs e)
-        {
-            Audi audi = new Audi();
-            audi.ShowDialog();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            bmw bmw = new bmw();
-            bmw.Show();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            benz benz = new benz();
-            benz.Show();
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            vw vw = new vw();
-            vw.Show();
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (autodrop.SelectedItem != null)
+            if (e.ColumnIndex == -1)
             {
-                DataRowView drv = autodrop.SelectedItem as DataRowView;
-
-                Debug.WriteLine("Item: " + drv.Row["marke"].ToString());
-                Debug.WriteLine("Value: " + drv.Row["id"].ToString());
-                Debug.WriteLine("Value: " + autodrop.SelectedValue.ToString());
-                
-                int id = Convert.ToInt16(drv.Row["id"]);
-
-                if (id != 1)
+                return;
+            }
+            Debug.WriteLine("Cell Content Clicked...");
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "bild")
+            {
+                DialogResult result = openFileDialog1.ShowDialog(this);
+                if (result == DialogResult.OK)
                 {
-                    Cardisplayer carDisplayer = new Cardisplayer(id, drv.Row["marke"].ToString(), );
-                    carDisplayer.Show();
+                    dataGridView1.Rows[e.RowIndex].Cells["bild"].Value = Image.FromFile(openFileDialog1.FileName);
                 }
             }
         }
     }
 }
-
-
