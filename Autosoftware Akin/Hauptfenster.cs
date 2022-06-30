@@ -35,7 +35,7 @@ namespace Autosoftware_Akin
             dataGridView1.Columns["bild"].DefaultCellStyle.NullValue = null;
             dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[dataGridView1.Columns["bild"].Index].Value = new Bitmap(1, 1);
         }
-
+          
         private void Hauptfenster_FormClosing(object sender, FormClosingEventArgs e)
         {
             dataGridView1.EndEdit();

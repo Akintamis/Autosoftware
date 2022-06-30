@@ -176,5 +176,37 @@ namespace Autosoftware_Akin
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            printPreviewDialog1.ShowDialog(this);
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            // Get selected row and draw image of car to page
+            DataGridViewRow row = dataGridView2.SelectedRows[0];
+            if (row.Index + 1 >= dataGridView1.Rows.Count)
+            {
+                return;
+            }
+            DataRowView drv = row.DataBoundItem as DataRowView;
+            byte[] bild = drv.Row["bild"] as byte[];
+            Image img = null;
+            if (bild != null)
+            {
+                img = Image.FromStream(new MemoryStream(bild));
+            }
+            // Wie kann man das bild hier noch resizen?
+            e.Graphics.DrawImage(img, new PointF(0, 0));
+
+            
+            
+            
+            // Draw technical details to page
+            Bitmap bm = new Bitmap(this.dataGridView1.Width, this.dataGridView1.Height);
+            dataGridView1.DrawToBitmap(bm, new Rectangle(0, 0, this.dataGridView1.Width, this.dataGridView1.Height));
+            e.Graphics.DrawImage(bm, 0, 800);
+        }
     }
 }
