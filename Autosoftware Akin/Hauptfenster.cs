@@ -12,42 +12,23 @@ namespace Autosoftware_Akin
     {
         DataSet ds;
         MySqlDataAdapter da;
+        BindingSource source;
 
         public Hauptfenster()
         {
             InitializeComponent();
             new Datenbank();
             ds = new DataSet();
+            source = new BindingSource();
+            da = new MySqlDataAdapter("select * from marke", Datenbank.connection);
         }
-
-        //private void combobox1_selectedindexchanged(object sender, eventargs e)
-        //{
-        //    if (autodrop.selecteditem != null)
-        //    {
-        //        datarowview drv = autodrop.selecteditem as datarowview;
-        //        int id = convert.toint16(drv.row["id"]);
-        //        string marke = drv.row["marke"].tostring();
-        //        string bild = drv.row["bild"].tostring();
-
-        //        debug.writeline("id : " + id.tostring());
-        //        debug.writeline("drop selected value: " + autodrop.selectedvalue.tostring());
-        //        debug.writeline("marke: " + marke);
-        //        debug.writeline("bild: " + bild);
-
-        //        // bitte auswählen selected...
-        //        if (id != 0)
-        //        {
-        //            cardisplayer cardisplayer = new cardisplayer(id, marke, bild);
-        //            cardisplayer.show();
-        //        }
-        //    }
-        //}
 
         private void Hauptfenster_Load(object sender, EventArgs e)
         {
-            da = new MySqlDataAdapter("select * from marke", Datenbank.connection);
             da.Fill(ds);
-            dataGridView1.DataSource = ds.Tables[0];
+            source.DataSource = ds.Tables[0];
+            dataGridView1.DataSource = source;
+
             dataGridView1.Columns["id"].Visible = false;
 
             // Removes the "x" image from new row
@@ -55,22 +36,9 @@ namespace Autosoftware_Akin
             dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[dataGridView1.Columns["bild"].Index].Value = new Bitmap(1, 1);
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-
-
-        }
-
         private void Hauptfenster_FormClosing(object sender, FormClosingEventArgs e)
         {
-            MySqlCommandBuilder com = new MySqlCommandBuilder(da);
-            da.Update(ds);
-        }
-
-        private void dataGridView1_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-
+            updateDatabase();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -80,6 +48,8 @@ namespace Autosoftware_Akin
                 return;
             }
 
+            update();
+
             DataGridViewRow row = dataGridView1.SelectedRows[0];
 
             if (row.Index + 1 >= dataGridView1.Rows.Count)
@@ -87,15 +57,19 @@ namespace Autosoftware_Akin
                 return;
             }
 
-            MySqlCommandBuilder com = new MySqlCommandBuilder(da);
-            da.Update(ds);
-
             DataRowView drv = row.DataBoundItem as DataRowView;
+
             int id = Convert.ToInt32(drv.Row["id"]);
             string marke = drv.Row["marke"].ToString();
             byte[] bild = drv.Row["bild"] as byte[];
 
-            Cardisplayer cardisplayer = new Cardisplayer(id, marke, Image.FromStream(new MemoryStream(bild)));
+            Image img = null;
+            if (bild != null)
+            {
+                img = Image.FromStream(new MemoryStream(bild));
+            }
+
+            Cardisplayer cardisplayer = new Cardisplayer(id, marke, img);
             cardisplayer.ShowDialog(this);
         }
 
@@ -113,6 +87,35 @@ namespace Autosoftware_Akin
                 {
                     dataGridView1.Rows[e.RowIndex].Cells["bild"].Value = Image.FromFile(openFileDialog1.FileName);
                 }
+            }
+        }
+
+        private void update()
+        {
+            updateDatabase();
+            updateDataSet();
+        }
+
+        private void updateDatabase()
+        {
+            MySqlCommandBuilder com = new MySqlCommandBuilder(da);
+            da.Update(ds);
+        }
+        
+        private void updateDataSet()
+        {
+            int index = 0;
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                index = dataGridView1.SelectedRows[0].Index;
+            }
+
+            ds.Tables[0].Clear();
+            da.Fill(ds);
+            
+            if (index < dataGridView1.Rows.Count)
+            {
+                dataGridView1.Rows[index].Selected = true;
             }
         }
     }

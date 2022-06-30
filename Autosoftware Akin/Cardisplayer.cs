@@ -133,7 +133,7 @@ namespace Autosoftware_Akin
                 DataTable table = (DataTable)dataGridView2.DataSource;
                 DataGridViewRow oldRow = dataGridView1.Tag as DataGridViewRow;
 
-                if (oldRow != null)
+                if (oldRow != null && oldRow.Index < table.Rows.Count)
                 {
                     DataRow drw = table.Rows[oldRow.Index];
 

@@ -73,16 +73,6 @@ namespace Autosoftware_Akin.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap audi_a7 {
-            get {
-                object obj = ResourceManager.GetObject("audi_a7", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap benz {
             get {
                 object obj = ResourceManager.GetObject("benz", resourceCulture);
@@ -96,16 +86,6 @@ namespace Autosoftware_Akin.Properties {
         internal static System.Drawing.Bitmap bmw {
             get {
                 object obj = ResourceManager.GetObject("bmw", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap settings {
-            get {
-                object obj = ResourceManager.GetObject("settings", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
