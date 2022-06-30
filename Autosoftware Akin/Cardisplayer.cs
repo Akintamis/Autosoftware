@@ -62,6 +62,9 @@ namespace Autosoftware_Akin
 
         private void Cardisplayer_FormClosing(object sender, FormClosingEventArgs e)
         {
+            dataGridView2.EndEdit();
+            dataGridView2.CurrentCell = null;
+            
             saveAttributesToDataSource();
 
             MySqlCommandBuilder com = new MySqlCommandBuilder(dataAdapter);
@@ -133,7 +136,7 @@ namespace Autosoftware_Akin
                 DataTable table = (DataTable)dataGridView2.DataSource;
                 DataGridViewRow oldRow = dataGridView1.Tag as DataGridViewRow;
 
-                if (oldRow != null && oldRow.Index < table.Rows.Count)
+                if (oldRow != null && oldRow.Index >= 0 && oldRow.Index < table.Rows.Count)
                 {
                     DataRow drw = table.Rows[oldRow.Index];
 

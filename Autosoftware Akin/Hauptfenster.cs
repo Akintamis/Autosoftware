@@ -38,6 +38,8 @@ namespace Autosoftware_Akin
 
         private void Hauptfenster_FormClosing(object sender, FormClosingEventArgs e)
         {
+            dataGridView1.EndEdit();
+            dataGridView1.CurrentCell = null;
             updateDatabase();
         }
 
