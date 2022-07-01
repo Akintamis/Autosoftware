@@ -120,5 +120,11 @@ namespace Autosoftware_Akin
                 dataGridView1.Rows[index].Selected = true;
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Vergleichen vergleichen = new Vergleichen();
+            vergleichen.ShowDialog(this);
+        }
     }
 }

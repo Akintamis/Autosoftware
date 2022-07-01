@@ -193,12 +193,25 @@ namespace Autosoftware_Akin
             DataRowView drv = row.DataBoundItem as DataRowView;
             byte[] bild = drv.Row["bild"] as byte[];
             Image img = null;
+            
             if (bild != null)
             {
                 img = Image.FromStream(new MemoryStream(bild));
             }
-            // Wie kann man das bild hier noch resizen?
-            e.Graphics.DrawImage(img, new PointF(0, 0));
+            else if (bild_marke != null)
+            {
+                img = bild_marke;
+            }
+            else
+            {
+                img = Properties.Resources.auto;
+            }
+
+            float width = 500;
+            float height = (width * img.Height) / img.Width;
+
+            // new RectangleF(0, 0, 500, 700) = Audi Käfer Mode
+            e.Graphics.DrawImage(img, new RectangleF(0, 0, width, height));
 
             
             
@@ -206,7 +219,7 @@ namespace Autosoftware_Akin
             // Draw technical details to page
             Bitmap bm = new Bitmap(this.dataGridView1.Width, this.dataGridView1.Height);
             dataGridView1.DrawToBitmap(bm, new Rectangle(0, 0, this.dataGridView1.Width, this.dataGridView1.Height));
-            e.Graphics.DrawImage(bm, 0, 800);
+            e.Graphics.DrawImage(bm, 0, height + 50);
         }
     }
 }

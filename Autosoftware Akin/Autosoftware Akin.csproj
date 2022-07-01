@@ -104,6 +104,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vergleichen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vergleichen.Designer.cs">
+      <DependentUpon>Vergleichen.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Cardisplayer.resx">
       <DependentUpon>Cardisplayer.cs</DependentUpon>
     </EmbeddedResource>
@@ -114,6 +120,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vergleichen.resx">
+      <DependentUpon>Vergleichen.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -145,6 +154,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\vw.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eeae23049a5afa038b8405e864a1ad52.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

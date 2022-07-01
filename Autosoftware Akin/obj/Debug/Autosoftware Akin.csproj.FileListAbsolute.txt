@@ -106,3 +106,4 @@ C:\DEV\repositories\Autosoftware\Autosoftware Akin\obj\Debug\Autosoftware Akin.c
 C:\DEV\repositories\Autosoftware\Autosoftware Akin\obj\Debug\Autosoftware Akin.csproj.CopyComplete
 C:\DEV\repositories\Autosoftware\Autosoftware Akin\obj\Debug\Autosoftware Akin.exe
 C:\DEV\repositories\Autosoftware\Autosoftware Akin\obj\Debug\Autosoftware Akin.pdb
+C:\DEV\repositories\Autosoftware\Autosoftware Akin\obj\Debug\Autosoftware_Akin.Vergleichen.resources
